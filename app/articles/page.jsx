@@ -206,7 +206,7 @@ const page = () => {
       <div className='bg-[#A70E28] top-0 fixed w-full z-10'>
         <Navs />
       </div>
-      <div className='flex max-w-6xl mx-auto mt-[70px]'>
+      <div className='flex max-w-6xl mx-auto mt-[70px] gap-12'>
         <div className='w-[328px] fixed mt-[70px]'>
           <p>Showing 1-7 of 7 results</p>
           <div className='pt-[23px] flex items-center gap-4'>
@@ -260,11 +260,11 @@ const page = () => {
                 <option className='' value={2}>2</option>
                 <option className='px-5' value={3}>3</option>
                 <option className='px-5' value={5}>4</option>
-                <option className='px-5' value={6}>4</option>
-                <option className='px-5' value={4}>4</option>
-                <option className='px-5' value={1}>4</option>
-                <option className='px-5' value={8}>4</option>
-                <option className='px-5' value={9}>4</option>
+                <option className='px-5' value={6}>5</option>
+                <option className='px-5' value={4}>6</option>
+                <option className='px-5' value={1}>7</option>
+                <option className='px-5' value={8}>8</option>
+                <option className='px-5' value={9}>10</option>
                 <option className='px-5' value={10}>4</option>
                 <option className='px-5' value={11}>4</option>
                 <option className='px-5' value={12}>4</option>
