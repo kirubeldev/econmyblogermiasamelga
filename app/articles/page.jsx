@@ -1,16 +1,16 @@
 "use client";
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import Navs from '../componets/nav';
 import Atricle1Card from '../componets/Atricle1Card';
 import Subscribe from '../componets/Subscribe';
-import Footer from '../componets/Footer';
 
 const articlesData = [
   {
     date: "Mon 19th June , 2024",
     desc: "Innovation is crucial for businesses to stay ahead in a competitive market. This article examines how integrating innovative practices can transform business models, enhance efficiency, and lead to long-term success.",
-    img: "./kil1.png",
+    img: "/kil1.png",
     title: "Business and Innovation: Driving Future Success",
     type: "Business & Innovation",
     language: "English"
@@ -18,7 +18,7 @@ const articlesData = [
   {
     date: "Mon 19th June , 2024",
     desc: "The economy is rapidly evolving, presenting both challenges and opportunities for future development. This article explores strategies to secure sustainable growth, adapt to changing market conditions, and achieve long-term economic prosperity.",
-    img: "./kil3.png",
+    img: "/kil3.png",
     title: "Strengthening the Economy: Ensuring Sustainable Growth",
     type: "Economy",
     language: "Amharic"
@@ -26,7 +26,7 @@ const articlesData = [
   {
     date: "Mon 19th June , 2024",
     desc: "እንቅስቃሴ የማህበረሰብ እውቀትን እና እውነተኛ ድርጅት ማስተካከል ነው። ይህ ጽሑፍ በንግድ የምርመራ እና የመንግስት ሰላምና ስኬት ማግኘት በመሰረት እንዴት እንደሚገባ ተሞልቷል።",
-    img: "./kil4.png",
+    img: "/kil4.png",
     title: "የሽያጭ ጉዞ: ራእይን ወቅታዊ እውነት ለማድረግ",
     type: "Entrepreneur",
     language: "English"
@@ -34,7 +34,7 @@ const articlesData = [
   ,  {
     date: "Mon 19th June , 2024",
     desc: "እንቅስቃሴ የማህበረሰብ እውቀትን እና እውነተኛ ድርጅት ማስተካከል ነው። ይህ ጽሑፍ በንግድ የምርመራ እና የመንግስት ሰላምና ስኬት ማግኘት በመሰረት እንዴት እንደሚገባ ተሞልቷል።",
-    img: "./kil4.png",
+    img: "/kil4.png",
     title: "የሽያጭ ጉዞ lkjs : ራእይን ወቅታዊ እውነት ለማድረግ",
     type: "Health",
     language: "English"
@@ -93,7 +93,7 @@ const Page = () => {
         <div className='w-full px-5 md:px-0 md:w-[328px] md:fixed mt-[70px]'>
           <p>Showing {selectedArticles.length} of {filteredArticles.length} results</p>
           <div className='pt-[23px] flex items-center gap-4 cursor-pointer' onClick={() => setShowFilters(!showFilters)}>
-            <img src="./fil.png" alt="" />
+            <Image src="/fil.png" alt="" width={30} height={30} />
             <p className='text-[32px]'>Filters</p>
           </div>
           <hr className="px-6" />

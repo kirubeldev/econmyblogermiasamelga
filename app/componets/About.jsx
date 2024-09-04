@@ -5,7 +5,7 @@ import { MdOutlineArrowOutward } from "react-icons/md";
 const About = () => {
   return (
     <div>
-      <div className="flex max-w-6xl px-5 md-px-0  mx-auto mt-[100] md:mt-[200px] flex-col-reverse items-center justify-center md:justify-between md:flex-row">
+      <div className="flex max-w-6xl px-5 md-px-0  mx-auto mt-[100px] md:mt-[200px] flex-col-reverse items-center justify-center md:justify-between md:flex-row">
         <div className="relative -ml-10  md:ml-2 lg:pl-4 ">
           <Image width={200} height={459}
             src="/rec.png"
@@ -50,7 +50,7 @@ const About = () => {
             <p className="text-[12px]  md:text-[14px] ">Economist</p>{" "}
           </div>
 
-          <div className="absolute flex items-center gap-3 md:hidden lg:flex bottom-4 left-[45%]  bg-white rounded-2xl border px-4 py-[5px]">
+          <div className="absolute flex items-center gap-3 md:hidden lg:flex bottom-9 left-[45%]  bg-white rounded-2xl border px-4 py-[5px]">
             <Image
               src={"/oo1.png"}
               width={0}

@@ -4,7 +4,7 @@ import React from "react";
 const Footer = () => {
   return (
     <div>
-      <div className="flex px-5 md:px-[120px] pb-[77px] pt-[93px] bg-[#151515] mt-[100px] w-full flex-col space-y-8 md:flex-row md:justify-between ">
+      <div className="flex px-5 md:px-[120px] pb-[17px] pt-[93px] bg-[#151515] mt-[100px] w-full flex-col space-y-8 md:flex-row md:justify-between ">
         <div className="flex flex-col">
           <div className="flex items-center gap-1">
             <img src="./fotlog.png" alt="" className="size-[50px] " />

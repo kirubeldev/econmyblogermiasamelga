@@ -8,7 +8,11 @@ const Atricle1Card = ({ date, type, title, desc, img }) => {
         className="max-w-6xl mx-auto mt-[28px] border border-[#BFBFBF
 ]  rounded-[10px] flex flex-col md:flex-row gap-6 p-5"
       >
-        <img src={img} alt="" className="object-cover  max-h-[360px] md:h-[110px] rounded-lg" />
+        <img
+          src={img}
+          alt=""
+          className="object-cover h-[330px] md:h-[200px] rounded-lg"
+        />
         <div>
           <p className="text-[16px] mb-2">{date}</p>
           <button className="text-white rounded-[6px] flex items-center justify-center mb-4 bg-[#AF001E] py-[5px] px-[35px]">
