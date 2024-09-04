@@ -117,7 +117,7 @@ const Footer = () => {
       </div>
       <hr />
 
-      <div className="pt-[40px] text-white  md:px-[120px]  pb-[65px]  bg-[#151515] flex justify-between  items-center">
+      <div className="pt-[40px] text-white flex-col md:flex-row md:px-[120px]  pb-[65px]  bg-[#151515] flex justify-between  items-center">
         <p>© 2024 Copyright. All rights resaved </p>
         <p>Term and condition. Policy</p>
       </div>

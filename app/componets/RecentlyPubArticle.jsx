@@ -3,16 +3,16 @@ import { MdOutlineArrowOutward } from "react-icons/md";
 import Articles from "./Cards";
 
 const RecentlyPubArticle = () => (
-  <div className="max-w-6xl mx-auto ">
+  <div className="max-w-6xl px-5 md-px-0  mx-auto ">
     <div className="max-w-6xl mx-auto mt-[100px] flex justify-between items-center">
-      <p className="text-[40px] font-semibold"> Recently Published Articles </p>
+      <p className="  md:text-[40px] font-semibold"> Recently Published Articles </p>
 
       <button className="flex items-center border gap-6 bg-white backdrop-blur-sm w-fit rounded-xl py-[6px] px-[15px]">
         See More <MdOutlineArrowOutward className="text-[20px]" />
       </button>
     </div>
 
-    <div className="flex flex-col justify-center md:justify-between md:flex-row">
+    <div className="flex flex-col justify-center md:gap-6 md:justify-between md:flex-row">
     <Articles
         dates={"mon 19th june , 2024"}
         img={"./art1.png"}

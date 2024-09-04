@@ -30,6 +30,8 @@ export default function Home() {
 <Hero/>
       </div>
    
+
+
 <ProfetionalExprience/>
 <RecentlyPubArticle/>
 <About/>

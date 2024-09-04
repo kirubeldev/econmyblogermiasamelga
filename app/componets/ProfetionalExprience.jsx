@@ -4,15 +4,15 @@ import React from 'react';
 const ProfetionalExprience = () => {
   return (
     <div>
-      <div className='flex max-w-6xl flex-col md:flex-row justify-center mx-auto md:mt-[100px] mt-[50px] md:justify-between '>
-        <div>
-          <p className='text-[30px] md:text-[40px]'>Professional Experience</p>
-          <p className='max-w-[450px] text-[14px]'>
+      <div className='flex px-5 md-px-0 max-w-6xl  flex-col md:flex-row justify-center mx-auto md:mt-[100px] mt-[50px] md:justify-between '>
+        <div className='md:mr-8 lg:mr-0'>
+          <p className='text-[30px] md:text-[40px] '>Professional Experience</p>
+          <p className='max-w-[450px] text-justify text-[14px]'>
             Ermyas Amelga&#39;s career path is marked by noteworthy accomplishments and revolutionary contributions in a range of fields, both in Ethiopia and the United States. His wealth of Wall Street experience and his business endeavors in Ethiopia demonstrate his proficiency in finance, investing, and economic growth.
           </p>
         </div>
 
-        <div className='overflow-y-scroll flex flex-col h-[430px] custom-scrollbar'>
+        <div className='overflow-y-scroll mt-7 md-mt-0 flex flex-col h-[430px] custom-scrollbar'>
           {Array(7).fill('').map((_, index) => (
             <div key={index} className='p-4 rounded-[21px] border mb-[20px] border-[#BFBFBF]'>
               <div className='flex gap-4 justify-start'>

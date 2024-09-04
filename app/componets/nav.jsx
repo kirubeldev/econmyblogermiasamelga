@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { IoSearch } from "react-icons/io5";
 import { MdOutlineArrowOutward } from "react-icons/md";
 import { IoIosArrowDown } from "react-icons/io";
-
+import { RxHamburgerMenu } from "react-icons/rx";
 const Navs = () => {
   const [show, setShow] = useState(false);
 
@@ -15,7 +15,23 @@ const Navs = () => {
 
   return (
     <div>
-      <div className="bg-white/10 backdrop-blur-md shadow-lg flex justify-between items-center w-full p-[21px]">
+
+<div className="lg:hidden bg-white/10 backdrop-blur-md shadow-lg py-4 flex px-5 justify-between items-center w-full md:p-[21px] " >
+<div className="flex items-center gap-[70px]">
+          <Link href={"/"}>
+            <Image
+              src="/logo.png"
+              alt="Logo"
+              width={30}
+              height={30}
+              
+              />
+              </Link> 
+            </div>
+<RxHamburgerMenu  className="text-white text-3xl"/>
+</div>
+
+      <div className= " hidden  bg-white/10 backdrop-blur-md shadow-lg lg:flex justify-between items-center w-full md:p-[21px]">
         <div className="flex justify-between items-center max-w-6xl mx-auto ">
           <div className="flex items-center gap-[70px]">
             <Image
@@ -37,19 +53,19 @@ const Navs = () => {
                   {show && (
                     <ul className="absolute left-0 bg-white p-[20px] mt-2 text-black rounded-md space-y-1 shadow-lg z-10 min-w-[224px]">
                       <li>
-                        <Link href={""}>Business and innovation</Link>
+                        <Link href={"/articles"}>Business and innovation</Link>
                       </li>
                       <hr />
                       <li>
-                        <Link href={""}>Economy</Link>
+                        <Link href={"/articles"}>Economy</Link>
                       </li>
                       <hr />
                       <li>
-                        <Link href={""}>Entrepreneur</Link>
+                        <Link href={"/articles"}>Entrepreneur</Link>
                       </li>
                       <hr />
                       <li>
-                        <Link href={""}>Health</Link>
+                        <Link href={"/articles"}>Health</Link>
                       </li>
                     </ul>
                   )}
