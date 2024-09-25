@@ -17,7 +17,7 @@ const Navs = () => {
     <div>
 
 <div className="lg:hidden bg-white/10 backdrop-blur-md shadow-lg py-4 flex px-5 justify-between items-center w-full md:p-[21px] " >
-<div className="flex items-center gap-[70px]">
+<div className="flex items-center gap-[10px]">
           <Link href={"/"}>
             <Image
               src="/logo.png"
@@ -26,21 +26,30 @@ const Navs = () => {
               height={30}
               
               />
+              
               </Link> 
+
+
+ <p className="text-white">Konwledge is Power</p>
+
             </div>
 <RxHamburgerMenu  className="text-white text-3xl"/>
 </div>
-
       <div className= " hidden  bg-white/10 backdrop-blur-md shadow-lg lg:flex justify-between items-center w-full md:p-[21px]">
         <div className="flex justify-between items-center max-w-6xl mx-auto ">
           <div className="flex items-center gap-[70px]">
+            <div className="flex items-center gap-3">
+
             <Image
               src="/logo.png"
               alt="Logo"
               width={40}
               height={40}
               className="size-[40px]"
-            />
+              />
+            <p className="text-[18px] text-white">Konwledge is Power</p>
+
+              </div>
             <nav>
               <ul className="text-white flex gap-10 relative ">
                 <li className="relative" onClick={handelshow}>
@@ -71,12 +80,12 @@ const Navs = () => {
                   )}
                 </li>
                 <li>
-                  <Link className="text-[18px] font-semibold" href="#about">
+                  <Link className="text-[18px] font-semibold" href="/about">
                     About
                   </Link>
                 </li>
                 <li>
-                  <Link className="text-[18px] font-semibold" href="#services">
+                  <Link className="text-[18px] font-semibold" href="/contact">
                     Contact
                   </Link>
                 </li>

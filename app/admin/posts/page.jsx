@@ -2,9 +2,11 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import Navs from '../componets/nav';
-import Atricle1Card from '../componets/Atricle1Card';
-import Subscribe from '../componets/Subscribe';
+import Atricle1Card from '@/app/componets/Atricle1Card';
+import Subscribe from '@/app/componets/Subscribe';
+import Navs from '@/app/componets/nav';
+import { FiPlus } from "react-icons/fi";
+import AdminAtricle1Card from '@/app/componets/AdminArticle';
 
 const articlesData = [
   {
@@ -136,6 +138,7 @@ const articlesData = [
 ];
 
 const Page = () => {
+  const [publishedblog, setpublishedblog] = useState("All Job Posts");
   const [itemsPerPage, setItemsPerPage] = useState(4);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedFilters, setSelectedFilters] = useState({
@@ -143,15 +146,16 @@ const Page = () => {
     languages: [],
   });
   const [showFilters, setShowFilters] = useState(false); // State to control filter visibility
+  const [filter, setFilter] = useState('all'); // Default to showing all blogs
 
-  // Filter articles based on selected filters
+  // Filtered articles based on the selected filter
   const filteredArticles = articlesData.filter((article) => {
-    const matchesTopic =
-      selectedFilters.topics.length === 0 || selectedFilters.topics.includes(article.type);
-    const matchesLanguage =
-      selectedFilters.languages.length === 0 || selectedFilters.languages.includes(article.language);
-    return matchesTopic && matchesLanguage;
+    if (filter === 'all') return true; // Show all articles
+    if (filter === 'draft') return article.isDraft; // Show only drafts
+    return false;
   });
+  // Filter articles based on selected filters
+  
 
   const totalPages = Math.ceil(filteredArticles.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -182,157 +186,106 @@ const Page = () => {
       <div className='bg-[#A70E28] top-0 md:fixed w-full z-10'>
         <Navs />
       </div>
-      <div className='flex flex-col md:flex-row  md:max-w-6xl mx-auto mt-[70px]'>
-        <div className='w-full px-5  md:w-[328px] md:fixed mt-[70px] '>
-          <p>Showing {selectedArticles.length} of {filteredArticles.length} results</p>
-          <div className='pt-[23px] flex items-center gap-4 cursor-pointer' onClick={() => setShowFilters(!showFilters)}>
-            <Image src="/fil.png" alt="" width={30} height={30} />
-            <p className='text-[32px]'>Filters</p>
-          </div>
-          <hr className="px-6" />
-          {/* Filter section, visible on larger screens and toggled on mobile */}
-          <div className={`md:block ${showFilters ? 'block' : 'hidden'} md:visible`}>
-            <div className='mt-7'>
-              <p className='text-[18px] font-semibold'>Topics</p>
+      <div className='max-w-6xl mx-auto mt-[70px]'>
+    
+        <div className=' px-5 md:px-0 mt-[140px] '>
+          <div className='flex md:justify-between items-center gap-7 '>
+          <div className="flex space-x-4 mb-4">
+        <button
+          onClick={() => setFilter('all')}
+          className={`px-4 py-2 ${filter === 'all' ? 'text-black border-b border-blue-500 ' : ' '}`}
+        >
+          All Blogs
+        </button>
+        <button
+          onClick={() => setFilter('draft')}
+          className={`px-4 py-2 ${filter === 'draft' ? 'text-black border-b border-blue-500 ' : ' '}`}
+        >
+          Drafts
+        </button>
+      </div>
+
+        <div className='flex items-center  gap-5 '>
+
+            <div className='outline-none  bg-[#B2B2B536] px-6  py-2 rounded-2xl cursor-pointer flex items-center gap-4'>
+              <img src="/filter.png" alt="" className='text-white' />
+            <button className=''>Filter</button>
+            
             </div>
-            <div className='pl-3 pt-1'>
-              <div className='flex items-center gap-3'>
-                <input
-                  type="checkbox"
-                  id="business"
-                  checked={selectedFilters.topics.includes("Business & Innovation")}
-                  onChange={() => handleFilterChange("topics", "Business & Innovation")}
-                />
-                <label htmlFor="business">Business & Innovation</label>
-              </div>
-              <div className='flex items-center gap-3'>
-                <input
-                  type="checkbox"
-                  id="economy"
-                  checked={selectedFilters.topics.includes("Economy")}
-                  onChange={() => handleFilterChange("topics", "Economy")}
-                />
-                <label htmlFor="economy">Economy</label>
-              </div>
-              <div className='flex items-center gap-3'>
-                <input
-                  type="checkbox"
-                  id="entrepreneur"
-                  checked={selectedFilters.topics.includes("Entrepreneur")}
-                  onChange={() => handleFilterChange("topics", "Entrepreneur")}
-                />
-                <label htmlFor="entrepreneur">Entrepreneur</label>
-              </div>
-              <div className='flex items-center gap-3'>
-    <input
-        type="checkbox"
-        id="Health"
-        checked={selectedFilters.topics.includes("Health")}
-        onChange={() => handleFilterChange("topics", "Health")}
-    />
-    <label htmlFor="Health">Health</label>
-</div>
+            <div className='flex items-center h-[40px] gap-1 border  py-[8] rounded-2xl cursor-pointer px-[40px]'>
+
+           <button > Post a Blog</button>
+           <FiPlus className='text-xl  '/>
             </div>
-            <div className='mt-7'>
-              <p className='text-[18px] font-semibold'>Languages</p>
-            </div>
-            <div className='pl-3 pt-1'>
-              <div className='flex items-center gap-3'>
-                <input
-                  type="checkbox"
-                  id="english"
-                  checked={selectedFilters.languages.includes("English")}
-                  onChange={() => handleFilterChange("languages", "English")}
-                />
-                <label htmlFor="english">English</label>
-              </div>
-              <div className='flex items-center gap-3'>
-                <input
-                  type="checkbox"
-                  id="amharic"
-                  checked={selectedFilters.languages.includes("Amharic")}
-                  onChange={() => handleFilterChange("languages", "Amharic")}
-                />
-                <label htmlFor="amharic">Amharic</label>
-              </div>
-            </div>
-          </div>
         </div>
-        <div className='md:ml-[328px] px-5 md:px-0 mt-[70px]'>
-          <div className='flex md:justify-end gap-7'>
-            <div className='outline-none'>
-              <p className='font-semibold py-1'>Show per page</p>
-              <select
-                id="itemsPerPage"
-                value={itemsPerPage}
-                onChange={(e) => {
-                  setItemsPerPage(Number(e.target.value));
-                  setCurrentPage(1); // Reset to first page
-                }}
-                className='outline-none w-[50p] text-start px-10 py-1 bg-white border rounded-sm'
-              >
-                <option value={2}>2</option>
-                <option value={3}>3</option>
-                <option value={4}>4</option>
-                <option value={5}>5</option>
-                <option value={6}>6</option>
-                <option value={7}>7</option>
-                <option value={8}>8</option>
-                <option value={9}>9</option>
-                <option value={10}>10</option>
-                <option value={11}>11</option>
-                <option value={12}>12</option>
-                <option value={13}>13</option>
-                <option value={14}>14</option>
-                <option value={15}>15</option>
-              </select>
-            </div>
-            <div className="flex flex-col">
-              <p className='font-semibold py-1'>Sort by</p>
-              <select name="" id="" className='px-3 py-1 bg-white border rounded-sm'>
-                <option value="">Newest to Oldest</option>
-                <option className='outline-none rounded-sm' value="">Oldest to Newest</option>
-              </select>
-            </div>
+
           </div>
-          <div className="">
-            {selectedArticles.map(article => (
-              <Atricle1Card
-                key={article.title} // Ensure you have a unique key
-                date={article.date}
-                desc={article.desc}
-                img={article.img}
-                title={article.title}
-                type={article.type}
-              />
-            ))}
-          </div>
-          <div className='flex item-center max-w-screen px-5 md:px-0 justify-center mt-5'>
-            <button onClick={handlePrevPage} disabled={currentPage === 1} className='border px-4 py-2 rounded'>
-              Back
+
+
+
+          {filter === "draft" ? 
+  (
+    <div className='h-[100vh] flex items-center justify-center'>
+      <p className='text-6xl'>No Draft found</p>
+    </div>
+  ) : (
+    <div>
+      <div className="">
+        {selectedArticles.map((article) => (
+          <AdminAtricle1Card
+            key={article.title} // Unique key to prevent errors
+            date={article.date}
+            desc={article.desc}
+            img={article.img}
+            title={article.title}
+            type={article.type}
+          />
+        ))}
+      </div>
+
+      {/* Pagination Section */}
+      <div className='flex items-center max-w-screen px-5 md:px-0 justify-center mt-5'>
+        <button 
+          onClick={handlePrevPage} 
+          disabled={currentPage === 1} 
+          className='border px-4 py-2 rounded'
+        >
+          Back
+        </button>
+
+        <div className='flex items-center mx-4'>
+          {Array.from({ length: totalPages }, (_, index) => (
+            <button
+              key={index + 1}
+              onClick={() => setCurrentPage(index + 1)}
+              className={`border px-3 py-1 rounded mx-1 ${currentPage === index + 1 ? 'bg-black text-white' : 'bg-white text-black'}`}
+            >
+              {index + 1}
             </button>
-            <div className='flex items-center mx-4'>
-              {Array.from({ length: totalPages }, (_, index) => (
-                <button
-                  key={index + 1}
-                  onClick={() => setCurrentPage(index + 1)}
-                  className={`border px-3 py-1 rounded mx-1 ${currentPage === index + 1 ? 'bg-black text-white' : 'bg-white text-black'}`}
-                >
-                  {index + 1}
-                </button>
-              ))}
-            </div>
-            <button onClick={handleNextPage} disabled={currentPage === totalPages} className='border px-2 py-2 rounded'>
-              Next
-            </button>
-          </div>
-          <div className='md:w-fit px-5 max-w-6xl md:px-0 flex mx-auto'>
+          ))}
+        </div>
+
+        <button 
+          onClick={handleNextPage} 
+          disabled={currentPage === totalPages} 
+          className='border px-2 py-2 rounded'
+        >
+          Next
+        </button>
+      </div>
+      
+      <div className='md:w-fit px-5 max-w-6xl md:px-0 flex mx-auto'>
+        {/* Any additional content here */}
+      </div>
+    </div>
+  )
+}
+
         <Subscribe />
       </div>
         </div>
       </div>
      
-    </div>
   );
 }
 

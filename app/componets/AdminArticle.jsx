@@ -1,8 +1,8 @@
 import React from "react";
 import { GoDownload } from "react-icons/go";
 import { MdOutlineArrowOutward } from "react-icons/md";
-
-const Atricle1Card = ({ date, type, title, desc, img }) => {
+import { TbDotsVertical } from "react-icons/tb";
+const AdminAtricle1Card = ({ date, type, title, desc, img }) => {
   return (
     <div>
       <div
@@ -15,7 +15,11 @@ const Atricle1Card = ({ date, type, title, desc, img }) => {
           className="object-cover h-[330px] md:h-[200px] rounded-lg"
         />
         <div>
+            <div className="flex items-center justify-between ">
+
           <p className="text-[16px] mb-2">{date}</p>
+          <TbDotsVertical className="text-lg text-bold cursor-pointer" />
+            </div>
           <button className="text-white rounded-[6px] flex items-center justify-center mb-4 bg-[#AF001E] py-[5px] px-[35px]">
             {type}
           </button>
@@ -43,4 +47,4 @@ const Atricle1Card = ({ date, type, title, desc, img }) => {
   );
 };
 
-export default Atricle1Card;
+export default AdminAtricle1Card;

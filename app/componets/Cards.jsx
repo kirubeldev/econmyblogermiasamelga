@@ -1,6 +1,6 @@
 import React from 'react';
 import { SlArrowRight } from "react-icons/sl";
-
+import { GoDownload } from "react-icons/go";
 const Articles = ({ img, dates, title, desc, type }) => {
   const imgs = "https://images.unsplash.com/photo-1503235930437-8c6293ba41f5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHByb2ZpbGV8ZW58MHx8MHx8fDA%3D";
 
@@ -25,8 +25,11 @@ const Articles = ({ img, dates, title, desc, type }) => {
           {desc} 
         </p>
       </div>
-      <div className='flex gap-3 pb-3 justify-end mt-5'>
-        <button className="flex items-center border-black border gap-2 bg-white backdrop-blur-sm rounded-md py-[5px] px-[15px]">
+      <div className='flex gap-3 pb-3 justify-between mt-5'>
+      <button className="flex items-center border-gray border gap-2 bg-white backdrop-blur-sm rounded-2xl py-[5px] px-[15px]">
+          Download Article <GoDownload />
+        </button>
+        <button className="flex items-center border-gray border gap-2 bg-white backdrop-blur-sm rounded-2xl py-[5px] px-[15px]">
           Read Article <SlArrowRight />
         </button>
       </div>
