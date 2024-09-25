@@ -1,155 +1,64 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react'; // Ensure useEffect is imported
 import Image from 'next/image';
 import Navs from '../componets/nav';
-import Atricle1Card from '../componets/Atricle1Card';
+import SkeletonArticle from '../componets/skelton';
 import Subscribe from '../componets/Subscribe';
+import Atricle1Card from '../componets/Atricle1Card';
+import Atricle1Card2 from '../componets/articlecard2';
 
-const articlesData = [
-  {
-    date: "Mon 19th June , 2024",
-    desc: "Innovation is crucial for businesses to stay ahead in a competitive market. This article examines how integrating innovative practices can transform business models, enhance efficiency, and lead to long-term success.",
-    img: "/kil1.png",
-    title: "Business and Innovation: Driving Future Success",
-    type: "Business & Innovation",
-    language: "English"
-  },
-  {
-    date: "Mon 19th June , 2024",
-    desc: "The economy is rapidly evolving, presenting both challenges and opportunities for future development. This article explores strategies to secure sustainable growth, adapt to changing market conditions, and achieve long-term economic prosperity.",
-    img: "/kil3.png",
-    title: "Strengthening the Economy: Ensuring Sustainable Growth",
-    type: "Economy",
-    language: "Amharic"
-  },
-  {
-    date: "Mon 19th June , 2024",
-    desc: "እንቅስቃሴ የማህበረሰብ እውቀትን እና እውነተኛ ድርጅት ማስተካከል ነው። ይህ ጽሑፍ በንግድ የምርመራ እና የመንግስት ሰላምና ስኬት ማግኘት በመሰረት እንዴት እንደሚገባ ተሞልቷል።",
-    img: "/kil4.png",
-    title: "የሽያጭ ጉዞ: ራእይን ወቅታዊ እውነት ለማድረግ",
-    type: "Entrepreneur",
-    language: "Amharic"
-  }
-  ,  {
-    date: "Mon 19th June , 2024",
-    desc: "እንቅስቃሴ የማህበረሰብ እውቀትን እና እውነተኛ ድርጅት ማስተካከል ነው። ይህ ጽሑፍ በንግድ የምርመራ እና የመንግስት ሰላምና ስኬት ማግኘት በመሰረት እንዴት እንደሚገባ ተሞልቷል።",
-    img: "/kil4.png",
-    title: "የሽያጭ ጉዞ lkjs : ራእይን ወቅታዊ እውነት ለማድረግ",
-    type: "Health",
-    language: "Amharic"
-  }
-  , {
-    date: "Mon 19th June , 2024",
-    desc: "Innovation is crucial for businesses to stay ahead in a competitive market. This article examines how integrating innovative practices can transform business models, enhance efficiency, and lead to long-term success.",
-    img: "/kil1.png",
-    title: "Business and Innovation: Driving Future Success",
-    type: "Business & Innovation",
-    language: "English"
-  },
-  {
-    date: "Mon 19th June , 2024",
-    desc: "The economy is rapidly evolving, presenting both challenges and opportunities for future development. This article explores strategies to secure sustainable growth, adapt to changing market conditions, and achieve long-term economic prosperity.",
-    img: "/kil3.png",
-    title: "Strengthening the Economy: Ensuring Sustainable Growth",
-    type: "Economy",
-    language: "Amharic"
-  },
-  {
-    date: "Mon 19th June , 2024",
-    desc: "እንቅስቃሴ የማህበረሰብ እውቀትን እና እውነተኛ ድርጅት ማስተካከል ነው። ይህ ጽሑፍ በንግድ የምርመራ እና የመንግስት ሰላምና ስኬት ማግኘት በመሰረት እንዴት እንደሚገባ ተሞልቷል።",
-    img: "/kil4.png",
-    title: "የሽያጭ ጉዞ: ራእይን ወቅታዊ እውነት ለማድረግ",
-    type: "Entrepreneur",
-    language: "Amharic"
-  }
-  ,  {
-    date: "Mon 19th June , 2024",
-    desc: "እንቅስቃሴ የማህበረሰብ እውቀትን እና እውነተኛ ድርጅት ማስተካከል ነው። ይህ ጽሑፍ በንግድ የምርመራ እና የመንግስት ሰላምና ስኬት ማግኘት በመሰረት እንዴት እንደሚገባ ተሞልቷል።",
-    img: "/kil4.png",
-    title: "የሽያጭ ጉዞ lkjs : ራእይን ወቅታዊ እውነት ለማድረግ",
-    type: "Health",
-    language: "Amharic"
-  }, {
-    date: "Mon 19th June , 2024",
-    desc: "Innovation is crucial for businesses to stay ahead in a competitive market. This article examines how integrating innovative practices can transform business models, enhance efficiency, and lead to long-term success.",
-    img: "/kil1.png",
-    title: "Business and Innovation: Driving Future Success",
-    type: "Business & Innovation",
-    language: "English"
-  },
-  {
-    date: "Mon 19th June , 2024",
-    desc: "The economy is rapidly evolving, presenting both challenges and opportunities for future development. This article explores strategies to secure sustainable growth, adapt to changing market conditions, and achieve long-term economic prosperity.",
-    img: "/kil3.png",
-    title: "Strengthening the Economy: Ensuring Sustainable Growth",
-    type: "Economy",
-    language: "Amharic"
-  },
-  {
-    date: "Mon 19th June , 2024",
-    desc: "እንቅስቃሴ የማህበረሰብ እውቀትን እና እውነተኛ ድርጅት ማስተካከል ነው። ይህ ጽሑፍ በንግድ የምርመራ እና የመንግስት ሰላምና ስኬት ማግኘት በመሰረት እንዴት እንደሚገባ ተሞልቷል።",
-    img: "/kil4.png",
-    title: "የሽያጭ ጉዞ: ራእይን ወቅታዊ እውነት ለማድረግ",
-    type: "Entrepreneur",
-    language: "Amharic"
-  }
-  ,  {
-    date: "Mon 19th June , 2024",
-    desc: "እንቅስቃሴ የማህበረሰብ እውቀትን እና እውነተኛ ድርጅት ማስተካከል ነው። ይህ ጽሑፍ በንግድ የምርመራ እና የመንግስት ሰላምና ስኬት ማግኘት በመሰረት እንዴት እንደሚገባ ተሞልቷል።",
-    img: "/kil4.png",
-    title: "የሽያጭ ጉዞ lkjs : ራእይን ወቅታዊ እውነት ለማድረግ",
-    type: "Health",
-    language: "Amharic"
-  }, {
-    date: "Mon 19th June , 2024",
-    desc: "Innovation is crucial for businesses to stay ahead in a competitive market. This article examines how integrating innovative practices can transform business models, enhance efficiency, and lead to long-term success.",
-    img: "/kil1.png",
-    title: "Business and Innovation: Driving Future Success",
-    type: "Business & Innovation",
-    language: "English"
-  },
-  {
-    date: "Mon 19th June , 2024",
-    desc: "The economy is rapidly evolving, presenting both challenges and opportunities for future development. This article explores strategies to secure sustainable growth, adapt to changing market conditions, and achieve long-term economic prosperity.",
-    img: "/kil3.png",
-    title: "Strengthening the Economy: Ensuring Sustainable Growth",
-    type: "Economy",
-    language: "Amharic"
-  },
-  {
-    date: "Mon 19th June , 2024",
-    desc: "እንቅስቃሴ የማህበረሰብ እውቀትን እና እውነተኛ ድርጅት ማስተካከል ነው። ይህ ጽሑፍ በንግድ የምርመራ እና የመንግስት ሰላምና ስኬት ማግኘት በመሰረት እንዴት እንደሚገባ ተሞልቷል።",
-    img: "/kil4.png",
-    title: "የሽያጭ ጉዞ: ራእይን ወቅታዊ እውነት ለማድረግ",
-    type: "Entrepreneur",
-    language: "Amharic"
-  }
-  ,  {
-    date: "Mon 19th June , 2024",
-    desc: "እንቅስቃሴ የማህበረሰብ እውቀትን እና እውነተኛ ድርጅት ማስተካከል ነው። ይህ ጽሑፍ በንግድ የምርመራ እና የመንግስት ሰላምና ስኬት ማግኘት በመሰረት እንዴት እንደሚገባ ተሞልቷል።",
-    img: "/kil4.png",
-    title: "የሽያጭ ጉዞ lkjs : ራእይን ወቅታዊ እውነት ለማድረግ",
-    type: "Health",
-    language: "Amharic"
-  }
-];
+const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  const options = { weekday: 'short', month: 'short', year: 'numeric' };
+  const day = date.getDate();
+
+  const getDaySuffix = (day) => {
+    if (day > 3 && day < 21) return 'th'; 
+    switch (day % 10) {
+      case 1: return 'st';
+      case 2: return 'nd';
+      case 3: return 'rd';
+      default: return 'th';
+    }
+  };
+
+  const formattedDay = `${day}${getDaySuffix(day)}`;
+  const formattedDate = date.toLocaleDateString('en-GB', options);
+  return `${formattedDate.split(' ')[0]} ${formattedDay} ${formattedDate.split(' ')[1]}, ${formattedDate.split(' ')[2]}`;
+};
 
 const Page = () => {
+  const [articlesData, setArticlesData] = useState([]); // State for fetched articles
   const [itemsPerPage, setItemsPerPage] = useState(4);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedFilters, setSelectedFilters] = useState({
     topics: [],
     languages: [],
   });
-  const [showFilters, setShowFilters] = useState(false); // State to control filter visibility
+  const [showFilters, setShowFilters] = useState(false);
+  const [isLoading, setIsLoading] = useState(true); // Loading state
 
-  // Filter articles based on selected filters
+  const fetchArticles = async () => {
+    try {
+      const res = await fetch(`http://localhost:3002/api/blog/`);
+      if (!res.ok) throw new Error('Network response was not ok');
+      const data = await res.json();
+      setArticlesData(data);
+    } catch (error) {
+      console.error("Error fetching articles:", error);
+    } finally {
+      setIsLoading(false); // Set loading to false after fetching
+    }
+  };
+
+  useEffect(() => {
+    fetchArticles(); // Fetch articles on component mount
+  }, []);
+
   const filteredArticles = articlesData.filter((article) => {
-    const matchesTopic =
-      selectedFilters.topics.length === 0 || selectedFilters.topics.includes(article.type);
-    const matchesLanguage =
-      selectedFilters.languages.length === 0 || selectedFilters.languages.includes(article.language);
+    const matchesTopic = selectedFilters.topics.length === 0 || selectedFilters.topics.includes(article.type);
+    const matchesLanguage = selectedFilters.languages.length === 0 || selectedFilters.languages.includes(article.language);
     return matchesTopic && matchesLanguage;
   });
 
@@ -177,84 +86,56 @@ const Page = () => {
     if (currentPage > 1) setCurrentPage(currentPage - 1);
   };
 
+  const truncateDescription = (description) => {
+    const words = description.split(' ');
+    return words.length > 20 ? words.slice(0, 20).join(' ') + '...' : description;
+  };
+
   return (
     <div className='mx-auto'>
       <div className='bg-[#A70E28] top-0 md:fixed w-full z-10'>
         <Navs />
       </div>
-      <div className='flex flex-col md:flex-row  md:max-w-6xl mx-auto mt-[70px]'>
-        <div className='w-full px-5  md:w-[328px] md:fixed mt-[70px] '>
+      <div className='flex flex-col md:flex-row md:max-w-6xl mx-auto mt-[70px]'>
+        <div className='w-full px-5 md:w-[328px] md:fixed mt-[70px] '>
           <p>Showing {selectedArticles.length} of {filteredArticles.length} results</p>
           <div className='pt-[23px] flex items-center gap-4 cursor-pointer' onClick={() => setShowFilters(!showFilters)}>
             <Image src="/fil.png" alt="" width={30} height={30} />
             <p className='text-[32px]'>Filters</p>
           </div>
           <hr className="px-6" />
-          {/* Filter section, visible on larger screens and toggled on mobile */}
           <div className={`md:block ${showFilters ? 'block' : 'hidden'} md:visible`}>
             <div className='mt-7'>
               <p className='text-[18px] font-semibold'>Topics</p>
             </div>
             <div className='pl-3 pt-1'>
-              <div className='flex items-center gap-3'>
-                <input
-                  type="checkbox"
-                  id="business"
-                  checked={selectedFilters.topics.includes("Business & Innovation")}
-                  onChange={() => handleFilterChange("topics", "Business & Innovation")}
-                />
-                <label htmlFor="business">Business & Innovation</label>
-              </div>
-              <div className='flex items-center gap-3'>
-                <input
-                  type="checkbox"
-                  id="economy"
-                  checked={selectedFilters.topics.includes("Economy")}
-                  onChange={() => handleFilterChange("topics", "Economy")}
-                />
-                <label htmlFor="economy">Economy</label>
-              </div>
-              <div className='flex items-center gap-3'>
-                <input
-                  type="checkbox"
-                  id="entrepreneur"
-                  checked={selectedFilters.topics.includes("Entrepreneur")}
-                  onChange={() => handleFilterChange("topics", "Entrepreneur")}
-                />
-                <label htmlFor="entrepreneur">Entrepreneur</label>
-              </div>
-              <div className='flex items-center gap-3'>
-    <input
-        type="checkbox"
-        id="Health"
-        checked={selectedFilters.topics.includes("Health")}
-        onChange={() => handleFilterChange("topics", "Health")}
-    />
-    <label htmlFor="Health">Health</label>
-</div>
+              {["Business & Innovation", "Economy", "Entrepreneur", "Health"].map(topic => (
+                <div className='flex items-center gap-3' key={topic}>
+                  <input
+                    type="checkbox"
+                    id={topic.toLowerCase()}
+                    checked={selectedFilters.topics.includes(topic)}
+                    onChange={() => handleFilterChange("topics", topic)}
+                  />
+                  <label htmlFor={topic.toLowerCase()}>{topic}</label>
+                </div>
+              ))}
             </div>
             <div className='mt-7'>
               <p className='text-[18px] font-semibold'>Languages</p>
             </div>
             <div className='pl-3 pt-1'>
-              <div className='flex items-center gap-3'>
-                <input
-                  type="checkbox"
-                  id="english"
-                  checked={selectedFilters.languages.includes("English")}
-                  onChange={() => handleFilterChange("languages", "English")}
-                />
-                <label htmlFor="english">English</label>
-              </div>
-              <div className='flex items-center gap-3'>
-                <input
-                  type="checkbox"
-                  id="amharic"
-                  checked={selectedFilters.languages.includes("Amharic")}
-                  onChange={() => handleFilterChange("languages", "Amharic")}
-                />
-                <label htmlFor="amharic">Amharic</label>
-              </div>
+              {["English", "Amharic"].map(language => (
+                <div className='flex items-center gap-3' key={language}>
+                  <input
+                    type="checkbox"
+                    id={language.toLowerCase()}
+                    checked={selectedFilters.languages.includes(language)}
+                    onChange={() => handleFilterChange("languages", language)}
+                  />
+                  <label htmlFor={language.toLowerCase()}>{language}</label>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -271,43 +152,44 @@ const Page = () => {
                 }}
                 className='outline-none w-[50p] text-start px-10 py-1 bg-white border rounded-sm'
               >
-                <option value={2}>2</option>
-                <option value={3}>3</option>
-                <option value={4}>4</option>
-                <option value={5}>5</option>
-                <option value={6}>6</option>
-                <option value={7}>7</option>
-                <option value={8}>8</option>
-                <option value={9}>9</option>
-                <option value={10}>10</option>
-                <option value={11}>11</option>
-                <option value={12}>12</option>
-                <option value={13}>13</option>
-                <option value={14}>14</option>
-                <option value={15}>15</option>
+                {[...Array(15).keys()].map((value) => (
+                  <option key={value + 2} value={value + 2}>{value + 2}</option>
+                ))}
               </select>
             </div>
             <div className="flex flex-col">
               <p className='font-semibold py-1'>Sort by</p>
-              <select name="" id="" className='px-3 py-1 bg-white border rounded-sm'>
+              <select className='px-3 py-1 bg-white border rounded-sm'>
                 <option value="">Newest to Oldest</option>
-                <option className='outline-none rounded-sm' value="">Oldest to Newest</option>
+                <option value="">Oldest to Newest</option>
               </select>
             </div>
           </div>
-          <div className="">
-            {selectedArticles.map(article => (
-              <Atricle1Card
-                key={article.title} // Ensure you have a unique key
-                date={article.date}
-                desc={article.desc}
-                img={article.img}
-                title={article.title}
-                type={article.type}
-              />
-            ))}
+          <div className="max-w-6xl mx-auto px-5 md:px-0 gap-6">
+            {isLoading ? ( // Show loading state
+              <>
+                <SkeletonArticle />
+                <SkeletonArticle />
+                <SkeletonArticle />
+                <SkeletonArticle />
+              </>
+            ) : selectedArticles.length > 0 ? (
+              selectedArticles.map((article, index) => (
+                <Atricle1Card2
+                  key={index}
+                  date={formatDate(article.createdAt)}
+                  desc={truncateDescription(article.description)}
+                  img={article.img}
+                  title={article.title}
+                  type={article.category}
+                  id={article._id}
+                />
+              ))
+            ) : (
+              <p>No articles found.</p>
+            )}
           </div>
-          <div className='flex item-center max-w-screen px-5 md:px-0 justify-center mt-5'>
+          <div className='flex items-center max-w-screen px-5 md:px-0 justify-center mt-5'>
             <button onClick={handlePrevPage} disabled={currentPage === 1} className='border px-4 py-2 rounded'>
               Back
             </button>
@@ -327,13 +209,12 @@ const Page = () => {
             </button>
           </div>
           <div className='md:w-fit px-5 max-w-6xl md:px-0 flex mx-auto'>
-        <Subscribe />
-      </div>
+            <Subscribe />
+          </div>
         </div>
       </div>
-     
     </div>
   );
-}
+};
 
 export default Page;

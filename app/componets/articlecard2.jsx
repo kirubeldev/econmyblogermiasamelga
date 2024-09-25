@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { GoDownload } from "react-icons/go";
 import { MdOutlineArrowOutward } from "react-icons/md";
 
-const Atricle1Card = ({ id, date, type, title, desc, img }) => {
+const Atricle1Card2 = ({ id, date, type, title, desc, img }) => {
  
   return (
     <div>
@@ -13,7 +13,7 @@ const Atricle1Card = ({ id, date, type, title, desc, img }) => {
         <img
           src="https://images.unsplash.com/photo-1719937051157-d3d81cc28e86?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxfHx8ZW58MHx8fHx8"
           alt=""
-          className="object-cover h-[330px] md:h-[200px] rounded-lg"
+          className="object-cover h-[340px] md:h-[250px] rounded-lg"
         />
         <div>
           <p className="text-[16px] mb-2">{date}</p>
@@ -24,11 +24,11 @@ const Atricle1Card = ({ id, date, type, title, desc, img }) => {
           <p>{desc}</p>
           <div className="flex items-center gap-6">
             <Link href={`/detail/${id}`}>
-              <button className="flex items-center border gap-6 backdrop-blur-sm w-fit rounded-xl py-[6px] px-[15px] transition-colors duration-300 mt-[20px] bg-white text-[#AF001E]">
-                Read Morse <MdOutlineArrowOutward className="text-[20px]" />
+              <button className="flex items-center border gap-6 backdrop-blur-sm w-fit rounded-xl py-[6px] px-[15px] transition-colors duration-300 mt-[20px] bg-white hover:text-[#AF001E]">
+                Read More <MdOutlineArrowOutward className="text-[20px]" />
               </button>
             </Link>
-            <button className="flex items-center border gap-6 backdrop-blur-sm w-fit rounded-xl py-[6px] px-[15px] transition-colors duration-300 mt-[20px] bg-white text-[#AF001E]">
+            <button className="flex items-center border gap-6 backdrop-blur-sm w-fit rounded-xl py-[6px] px-[15px] transition-colors duration-300 mt-[20px] bg-white hover:text-[#AF001E]">
               Download Article <GoDownload className="text-[20px]" />
             </button>
           </div>
@@ -38,4 +38,4 @@ const Atricle1Card = ({ id, date, type, title, desc, img }) => {
   );
 };
 
-export default Atricle1Card;
+export default Atricle1Card2;

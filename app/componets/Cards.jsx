@@ -1,7 +1,8 @@
 import React from 'react';
 import { SlArrowRight } from "react-icons/sl";
 import { GoDownload } from "react-icons/go";
-const Articles = ({ img, dates, title, desc, type }) => {
+import Link from 'next/link';
+const Articles = ({id, img, dates, title, desc, type }) => {
   const imgs = "https://images.unsplash.com/photo-1503235930437-8c6293ba41f5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHByb2ZpbGV8ZW58MHx8MHx8fDA%3D";
 
   return (
@@ -29,9 +30,12 @@ const Articles = ({ img, dates, title, desc, type }) => {
       <button className="flex items-center border-gray border gap-2 bg-white backdrop-blur-sm rounded-2xl py-[5px] px-[15px]">
           Download Article <GoDownload />
         </button>
+        <Link href={`/detail/${id}`}>
+
         <button className="flex items-center border-gray border gap-2 bg-white backdrop-blur-sm rounded-2xl py-[5px] px-[15px]">
           Read Article <SlArrowRight />
         </button>
+        </Link>
       </div>
     </div>
   );
