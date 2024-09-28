@@ -1,3 +1,4 @@
+import AdminArticleDetailcard from "@/app/componets/Adminside";
 import ArticleDetailcard from "@/app/componets/detailArticle";
 import Navs from "@/app/componets/nav";
 import React from "react";
@@ -10,11 +11,15 @@ const Page = async ({ params }) => {
   const fetchArticle = async () => {
     const response = await fetch(`http://localhost:3002/api/blog/${id}`, {
       next: { revalidate: 10 },
+      
     });
+
     if (!response.ok) {
-      throw new Error("Failed to fetch article");
+      return <div>failed to fetch data</div>
+    }else{
+
+      return response.json();
     }
-    return response.json();
   };
 
   // Fetch all articles
@@ -23,7 +28,7 @@ const Page = async ({ params }) => {
       next: { revalidate: 10 },
     });
     if (!response.ok) {
-      throw new Error("Failed to fetch articles");
+return <div>failed to fetch data</div>
     }
     return response.json();
   };
@@ -54,7 +59,7 @@ const Page = async ({ params }) => {
             <img
               src={article.coverImage} // Use the fetched article image
               alt={article.title} // Use the fetched article title for alt text
-              className="rounded-md object-cover object-center md:max-w-[900px] mx-auto md:h-[400px] sm:w-[550px] 2xl:w-[700px] 2xl:h-[483px]"
+              className="rounded-md md:max-w-[900px] mx-auto md:h-[400px] object-center object-cover sm:w-[550px] 2xl:w-[700px] 2xl:h-[483px]"
             />
           </div>
 
@@ -83,9 +88,9 @@ const Page = async ({ params }) => {
           <p className="text-2xl font-semibold">Related Articles</p>
 
           {relatedArticles.map((relatedArticle, index) => (
-            <ArticleDetailcard
+            <AdminArticleDetailcard
               key={relatedArticle._id || index} // Use unique id if available, else index
-              img={relatedArticle.coverImage}
+              img={relatedArticle?.coverImage}
               title={relatedArticle.title}
               id={relatedArticle._id}
             />

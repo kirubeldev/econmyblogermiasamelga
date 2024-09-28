@@ -50,7 +50,7 @@ const RecentlyPubArticle = () => {
             <Articles
               key={index} // Unique key for each article
               dates={formatDate(article.createdAt)} // Format the date
-              img={article.img} // Assuming img is part of the article data
+              img={article.coverImage}
               title={article.title}
               desc={truncateDescription(article.description)} // Truncate description
               type={article.category} // Assuming category is part of the article data

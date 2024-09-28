@@ -3,7 +3,7 @@ import React from "react";
 import { GoDownload } from "react-icons/go";
 import { MdOutlineArrowOutward } from "react-icons/md";
 
-const ArticleDetailcard = ({ id ,date, type, title, desc, img }) => {
+const AdminArticleDetailcard = ({ id ,date, type, title, desc, img }) => {
   return (
     <div>
         
@@ -27,7 +27,7 @@ const ArticleDetailcard = ({ id ,date, type, title, desc, img }) => {
 
           <div className="flex items-center  gap-6">
          
-          <Link href={`/detail/${id}`}>
+          <Link href={`/admin/detail/${id}`}>
               <button className="flex items-center border gap-6 backdrop-blur-sm w-fit rounded-xl py-[6px] px-[15px] transition-colors duration-300 mt-[10px] bg-white hover:text-[#AF001E]">
                 Read More <MdOutlineArrowOutward className="text-[20px]" />
               </button>
@@ -41,4 +41,4 @@ const ArticleDetailcard = ({ id ,date, type, title, desc, img }) => {
   );
 };
 
-export default ArticleDetailcard;
+export default AdminArticleDetailcard;

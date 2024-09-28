@@ -42,7 +42,8 @@ const ExploreArticles = () => {
         const res = await fetch(`http://localhost:3002/api/blog/`);
         const data = await res.json();
         setResponse(data);
-        console.log(data); // Log the data for debugging
+        console.log(data);
+        
       } catch (error) {
         console.error("Error fetching blog details:", error);
       }
@@ -109,7 +110,7 @@ const ExploreArticles = () => {
               key={index}
               date={formatDate(article.createdAt)}  // Example: "Mon 19th June, 2024"
               desc={truncateDescription(article.description)}  // Truncated description
-              img={article.img}
+              img={article.coverImage}
               title={article.title}
               type={article.category}
               id={article._id}

@@ -11,9 +11,10 @@ const Atricle1Card2 = ({ id, date, type, title, desc, img }) => {
     <div>
       <div className="max-w-6xl mx-auto mt-[28px] border border-[#BFBFBF] rounded-[10px] flex flex-col md:flex-row gap-6 p-5">
         <img
-          src="https://images.unsplash.com/photo-1719937051157-d3d81cc28e86?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxfHx8ZW58MHx8fHx8"
+          // src="https://images.unsplash.com/photo-1719937051157-d3d81cc28e86?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxfHx8ZW58MHx8fHx8"
+           src={img}
           alt=""
-          className="object-cover h-[340px] md:h-[250px] rounded-lg"
+          className="object-cover h-[340px] md:h-[250px] w-[300px] rounded-lg"
         />
         <div>
           <p className="text-[16px] mb-2">{date}</p>

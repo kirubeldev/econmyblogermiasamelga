@@ -9,11 +9,10 @@ const Articles = ({id, img, dates, title, desc, type }) => {
     <div className="w-fit mx-auto border bg-white p-4 rounded-lg shadow-md overflow-hidden mt-10">
       <div className='relative'>
         <img 
-          className="object-cover rounded-xl w-full" 
+          className="object-cover w-[300px] h-[250px] rounded-xl " 
           src={img} 
           alt="Article" 
-          width={330}
-          height={227}
+       
         />
         <p className='border text-[12px] py-1 px-3 rounded-md absolute bottom-3 left-3 bg-white w-fit'>
           {dates}  

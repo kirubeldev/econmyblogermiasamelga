@@ -44,7 +44,7 @@ const Page = () => {
       const res = await fetch(`http://localhost:3002/api/blog/`);
       if (!res.ok) throw new Error('Network response was not ok');
       const data = await res.json();
-      setArticlesData(data);
+      setArticlesData(data).reverse();
     } catch (error) {
       console.error("Error fetching articles:", error);
     } finally {
@@ -57,7 +57,7 @@ const Page = () => {
   }, []);
 
   const filteredArticles = articlesData.filter((article) => {
-    const matchesTopic = selectedFilters.topics.length === 0 || selectedFilters.topics.includes(article.type);
+    const matchesTopic = selectedFilters.topics.length === 0 || selectedFilters.topics.includes(article.category);
     const matchesLanguage = selectedFilters.languages.length === 0 || selectedFilters.languages.includes(article.language);
     return matchesTopic && matchesLanguage;
   });
@@ -93,11 +93,11 @@ const Page = () => {
 
   return (
     <div className='mx-auto'>
-      <div className='bg-[#A70E28] top-0 md:fixed w-full z-10'>
+      <div className='bg-[#A70E28] top-0 md:fixe w-full z-10'>
         <Navs />
       </div>
-      <div className='flex flex-col md:flex-row md:max-w-6xl mx-auto mt-[70px]'>
-        <div className='w-full px-5 md:w-[328px] md:fixed mt-[70px] '>
+      <div className='flex flex-col md:flex-row md:max-w-6xl justify-center mx-auto mt-[70px]'>
+        <div className='w-full px-5 md:w-[328px] md:fixe mt-[70px] '>
           <p>Showing {selectedArticles.length} of {filteredArticles.length} results</p>
           <div className='pt-[23px] flex items-center gap-4 cursor-pointer' onClick={() => setShowFilters(!showFilters)}>
             <Image src="/fil.png" alt="" width={30} height={30} />
@@ -139,7 +139,7 @@ const Page = () => {
             </div>
           </div>
         </div>
-        <div className='md:ml-[328px] px-5 md:px-0 mt-[70px]'>
+        <div className='md:ml-[328px px-5 md:px-0 mt-[70px]'>
           <div className='flex md:justify-end gap-7'>
             <div className='outline-none'>
               <p className='font-semibold py-1'>Show per page</p>
@@ -167,19 +167,19 @@ const Page = () => {
           </div>
           <div className="max-w-6xl mx-auto px-5 md:px-0 gap-6">
             {isLoading ? ( // Show loading state
-              <>
+              <div className=''>
                 <SkeletonArticle />
                 <SkeletonArticle />
                 <SkeletonArticle />
                 <SkeletonArticle />
-              </>
+              </div>
             ) : selectedArticles.length > 0 ? (
               selectedArticles.map((article, index) => (
                 <Atricle1Card2
                   key={index}
                   date={formatDate(article.createdAt)}
                   desc={truncateDescription(article.description)}
-                  img={article.img}
+                  img={article.coverImage}
                   title={article.title}
                   type={article.category}
                   id={article._id}
