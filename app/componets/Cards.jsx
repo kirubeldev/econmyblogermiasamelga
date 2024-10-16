@@ -26,7 +26,7 @@ const Articles = ({id, img, dates, title, desc, type }) => {
         </p>
       </div>
       <div className='flex gap-3 pb-3 justify-between mt-5'>
-      <button className="flex items-center border-gray border gap-2 bg-white backdrop-blur-sm rounded-2xl py-[5px] px-[15px]">
+      <button className="flex items-center border-gray border gap-2 bg-white backdrop-blur-sm rounded-xl py-[5px] px-[9px]">
           Download Article <GoDownload />
         </button>
         <Link href={`/detail/${id}`}>

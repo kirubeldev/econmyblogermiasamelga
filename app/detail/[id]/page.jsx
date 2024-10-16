@@ -37,7 +37,6 @@ const Page = async ({ params }) => {
     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) // Sort latest first
     .slice(0, 5); // Get the first 5 articles
 
-  console.log("Related Articles:", relatedArticles); // Debugging log
 
   return (
     <div>

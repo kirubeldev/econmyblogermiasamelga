@@ -81,12 +81,16 @@ const Postjob = ({ accessToken }) => {
         const result = await response.json();
         console.log(result);
         setMessage('Blog post created successfully!');
+        setDescription('');
+        setFormData('')
       } catch (error) {
         console.error('Error uploading files:', error);
         setMessage(error.message || 'Error uploading files. Please try again.');
       } finally {
         setLoading(false);
       }
+
+      
     };
   
     useEffect(() => {
@@ -163,7 +167,7 @@ const Postjob = ({ accessToken }) => {
                     onChange={handleInputChange}
                     className="border outline-none px-3 py-1 rounded-md md:w-full"
                   >
-                    <option value="draft">Draft</option>
+                    <option value="Draft">Draft</option>
                     <option value="active">Active</option>
                   </select>
                 </div>

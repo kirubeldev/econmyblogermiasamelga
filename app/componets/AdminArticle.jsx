@@ -31,7 +31,7 @@ src={img}
           <div className="flex items-center gap-5">
           {show &&  (
             <div className="flex md:flex-row flex-col items-center gap-6">
-                <Link className="px-[30px] py-[6px]  rounded-md hover:bg-[#f5f5f5]  border " href={""}>Edit</Link>
+                <Link className="px-[30px] py-[6px]  rounded-md hover:bg-[#f5f5f5]  border " href={`/admin/edit/${id}`}>Edit</Link>
                 <Link href={""}>
                 <button className="px-[30px] py-[6px]  rounded-md text-white hover:bg-red-400 bg-red-600">Delete</button></Link>
             </div>

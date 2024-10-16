@@ -39,6 +39,7 @@ const Navs = () => {
         <div className="flex justify-between items-center max-w-6xl mx-auto ">
           <div className="flex items-center gap-[70px]">
             <div className="flex items-center gap-3">
+            <Link href={"/"}>
 
             <Image
               src="/logo.png"
@@ -47,6 +48,7 @@ const Navs = () => {
               height={40}
               className="size-[40px]"
               />
+              </Link>
             <p className="text-[18px] text-white">Konwledge is Power</p>
 
               </div>
