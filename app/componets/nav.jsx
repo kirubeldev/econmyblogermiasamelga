@@ -35,8 +35,8 @@ const Navs = () => {
             </div>
 <RxHamburgerMenu  className="text-white text-3xl"/>
 </div>
-      <div className= " hidden  bg-white/10 backdrop-blur-md shadow-lg lg:flex justify-between items-center w-full md:p-[21px]">
-        <div className="flex justify-between items-center max-w-6xl mx-auto ">
+      <div className= " hidden  bg-white/10 backdrop-blur-md shadow-lg lg:flex justify-beteen items-start w-full md:p-[21px]">
+        <div className="flex justify-beteen items-start max-w-6xl pl-[100px] ">
           <div className="flex items-center gap-[70px]">
             <div className="flex items-center gap-3">
             <Link href={"/"}>
@@ -95,7 +95,7 @@ const Navs = () => {
             </nav>
           </div>
         </div>
-        <div className="flex items-center gap-[40px] max-w-6xl mx-auto">
+        {/* <div className="flex items-center gap-[40px] max-w-6xl mx-auto">
           <div className="flex items-center rounded-md gap-2 px-[12px] bg-white backdrop-blur-sm">
             <input
               type="text"
@@ -107,7 +107,7 @@ const Navs = () => {
           <button className="flex items-center gap-6 bg-white backdrop-blur-sm rounded-xl py-[7px] px-[15px]">
             Login <MdOutlineArrowOutward className="text-[20px]" />
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );

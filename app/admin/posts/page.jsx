@@ -90,15 +90,10 @@ const Page = () => {
               <button onClick={() => setFilter('all')} className={`px-4 py-2 ${filter === 'all' ? 'text-black border-b border-blue-500' : ''}`}>
                 All Blogs
               </button>
-              <button onClick={() => setFilter('draft')} className={`px-4 py-2 ${filter === 'draft' ? 'text-black border-b border-blue-500' : ''}`}>
-                Drafts
-              </button>
+          
             </div>
             <div className='flex items-center gap-5'>
-              <div className='outline-none bg-[#B2B2B536] px-6 py-2 rounded-2xl cursor-pointer flex items-center gap-4'>
-                <img src="/filter.png" alt="Filter Icon" />
-                <button>Filter</button>
-              </div>
+            
                <Link href="/admin/post">
               <div className='flex items-center h-[40px] gap-1 border py-[8] rounded-2xl cursor-pointer px-[40px]'>
                 <button>Post a Blog</button>

@@ -1,8 +1,8 @@
-import AdminArticleDetailcard from "@/app/componets/Adminside";
-import ArticleDetailcard from "@/app/componets/detailArticle";
-import Navs from "@/app/componets/nav";
-import React from "react";
 import { GoDownload } from "react-icons/go";
+import React from "react";
+import SanitizedContent from "@/app/componets/Dom";
+import AdminArticleDetailcard from "@/app/componets/Adminside";
+import Navs from "@/app/componets/nav";
 
 const Page = async ({ params }) => {
   const { id } = params;
@@ -11,38 +11,36 @@ const Page = async ({ params }) => {
   const fetchArticle = async () => {
     const response = await fetch(`http://localhost:3002/api/blog/${id}`, {
       next: { revalidate: 10 },
-      
     });
-
     if (!response.ok) {
-      return <div>failed to fetch data</div>
-    }else{
-
-      return response.json();
+      return null;
     }
+    return response.json();
   };
 
   // Fetch all articles
-  const fetchArticleall = async () => {
+  const fetchAllArticles = async () => {
     const response = await fetch(`http://localhost:3002/api/blog`, {
       next: { revalidate: 10 },
     });
     if (!response.ok) {
-return <div>failed to fetch data</div>
+      return [];
     }
     return response.json();
   };
 
   const article = await fetchArticle();
-  const allArticles = await fetchArticleall();
+  const allArticles = await fetchAllArticles();
+
+  if (!article) {
+    return <div>Failed to fetch data</div>;
+  }
 
   // Get the latest 5 articles, excluding the current article
   const relatedArticles = allArticles
-    .filter(relatedArticle => relatedArticle._id !== id) // Exclude the current article
-    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) // Sort latest first
-    .slice(0, 5); // Get the first 5 articles
-
-  console.log("Related Articles:", relatedArticles); // Debugging log
+    .filter((relatedArticle) => relatedArticle._id !== id)
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+    .slice(0, 5);
 
   return (
     <div>
@@ -57,15 +55,15 @@ return <div>failed to fetch data</div>
         <div>
           <div>
             <img
-              src={article.coverImage} // Use the fetched article image
-              alt={article.title} // Use the fetched article title for alt text
+              src={article.coverImage}
+              alt={article.title}
               className="rounded-md md:max-w-[900px] mx-auto md:h-[400px] object-center object-cover sm:w-[550px] 2xl:w-[700px] 2xl:h-[483px]"
             />
           </div>
 
           <div className="flex items-center justify-between mt-7">
             <button className="px-[30px] py-[10px] bg-[#AF001E] text-white rounded-md">
-              {article.category} {/* Display the article type dynamically */}
+              {article.category}
             </button>
             <button className="flex items-center border gap-6 backdrop-blur-sm w-fit rounded-xl py-[6px] px-[15px] transition-colors duration-300 bg-white">
               Download Article <GoDownload className="text-[20px]" />
@@ -75,7 +73,7 @@ return <div>failed to fetch data</div>
           <p className="mt-9 pl-5 text-2xl font-semibold">{article.title}</p>
 
           <article className="mt-4 text-justify max-w-[660px] mx-auto">
-            {article.description} {/* Display the article description dynamically */}
+            <SanitizedContent htmlContent={article.description} />
           </article>
 
           <button className="flex items-center border gap-6 backdrop-blur-sm w-fit rounded-xl py-[6px] px-[15px] transition-colors duration-300 mt-[20px] bg-white">
@@ -87,10 +85,10 @@ return <div>failed to fetch data</div>
         <div className="flex flex-col items-start justify-start">
           <p className="text-2xl font-semibold">Related Articles</p>
 
-          {relatedArticles.map((relatedArticle, index) => (
+          {relatedArticles.map((relatedArticle) => (
             <AdminArticleDetailcard
-              key={relatedArticle._id || index} // Use unique id if available, else index
-              img={relatedArticle?.coverImage}
+              key={relatedArticle._id}
+              img={relatedArticle.coverImage}
               title={relatedArticle.title}
               id={relatedArticle._id}
             />

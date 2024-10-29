@@ -1,13 +1,14 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import DOMPurify from "dompurify";
 import { MdOutlineArrowOutward } from "react-icons/md";
 import Articles from "./Cards";
 import SkeletonArticle from "./skeltion2";
 
 const RecentlyPubArticle = () => {
-  const [articles, setArticles] = useState([]); // State to hold articles
-  const [loading, setLoading] = useState(true); // State to manage loading status
+  const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchArticles = async () => {
@@ -21,12 +22,12 @@ const RecentlyPubArticle = () => {
       } catch (error) {
         console.error("Error fetching articles:", error);
       } finally {
-        setLoading(false); // Set loading to false after fetching
+        setLoading(false);
       }
     };
 
     fetchArticles();
-  }, []); // Fetch only once on mount
+  }, []);
 
   return (
     <div className="max-w-6xl px-5 md:px-0 mx-auto">
@@ -39,22 +40,21 @@ const RecentlyPubArticle = () => {
 
       <div className="flex flex-col justify-center md:gap-6 md:justify-between md:flex-row">
         {loading ? (
-          // Show skeletons while loading
           <>
             <SkeletonArticle />
             <SkeletonArticle />
             <SkeletonArticle />
           </>
         ) : articles.length > 0 ? (
-          articles.map((article, index) => (
+          articles.map((article) => (
             <Articles
-              key={index} // Unique key for each article
-              dates={formatDate(article.createdAt)} // Format the date
+              key={article._id}
+              dates={formatDate(article.createdAt)}
               img={article.coverImage}
               title={article.title}
-              desc={truncateDescription(article.description)} // Truncate description
-              type={article.category} // Assuming category is part of the article data
-              id={article._id} // Article ID
+              desc={truncateDescription(article.description)}
+              type={article.category}
+              id={article._id}
             />
           ))
         ) : (
@@ -68,29 +68,28 @@ const RecentlyPubArticle = () => {
 // Helper function to format the date
 const formatDate = (dateString) => {
   const date = new Date(dateString);
-  const options = { weekday: 'short', month: 'short', year: 'numeric' };
+  const options = { weekday: "short", month: "short", year: "numeric" };
   const day = date.getDate();
   const getDaySuffix = (day) => {
-    if (day > 3 && day < 21) return 'th'; // Special case for teens
+    if (day > 3 && day < 21) return "th";
     switch (day % 10) {
-      case 1: return 'st';
-      case 2: return 'nd';
-      case 3: return 'rd';
-      default: return 'th';
+      case 1: return "st";
+      case 2: return "nd";
+      case 3: return "rd";
+      default: return "th";
     }
   };
   const formattedDay = `${day}${getDaySuffix(day)}`;
-  const formattedDate = date.toLocaleDateString('en-GB', options);
-  return `${formattedDate.split(' ')[0]} ${formattedDay} ${formattedDate.split(' ')[1]}, ${formattedDate.split(' ')[2]}`;
+  const formattedDate = date.toLocaleDateString("en-GB", options);
+  return `${formattedDate.split(" ")[0]} ${formattedDay} ${formattedDate.split(" ")[1]}, ${formattedDate.split(" ")[2]}`;
 };
 
-// Helper function to truncate the description
+// Helper function to sanitize and truncate the description without <p> tags
 const truncateDescription = (description) => {
-  const words = description.split(' ');
-  if (words.length > 50) {
-    return words.slice(0, 50).join(' ') + '...';
-  }
-  return description;
+  // Sanitize description and remove <p> tags
+  const sanitizedDescription = DOMPurify.sanitize(description).replace(/<\/?p>/g, '');
+  const words = sanitizedDescription.split(" ");
+  return words.length > 50 ? words.slice(0, 50).join(" ") + "..." : sanitizedDescription;
 };
 
 export default RecentlyPubArticle;

@@ -157,13 +157,7 @@ const Page = () => {
                 ))}
               </select>
             </div>
-            <div className="flex flex-col">
-              <p className='font-semibold py-1'>Sort by</p>
-              <select className='px-3 py-1 bg-white border rounded-sm'>
-                <option value="">Newest to Oldest</option>
-                <option value="">Oldest to Newest</option>
-              </select>
-            </div>
+            
           </div>
           <div className="max-w-6xl mx-auto px-5 md:px-0 gap-6">
             {isLoading ? ( // Show loading state

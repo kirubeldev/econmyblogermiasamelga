@@ -11,11 +11,14 @@ const AdminArticleDetailcard = ({ id ,date, type, title, desc, img }) => {
         className="  border-[#BFBFBF
 ]  rounded-[10px] flex flex-col md:flex-row gap-6 py-2 md:w-full w-[300px] mx-auto justify-center text-center x-5"
       >
+          <Link href={`/admin/detail/${id}`}>
+
         <img
           src={img}
           alt=""
           className="object-cover h-[200px] md:h-[110px] w-[200px] rounded-lg"
         />
+        </Link>
         <div>
           {/* <p className="text-[16px] mb-2">{date}</p> */}
           {/* <button className="text-white rounded-[6px] flex items-center justify-center mb-4 bg-[#AF001E] py-[5px] px-[35px]">

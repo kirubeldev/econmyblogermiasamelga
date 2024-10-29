@@ -83,6 +83,10 @@ const Postjob = ({ accessToken }) => {
         setMessage('Blog post created successfully!');
         setDescription('');
         setFormData('')
+        setImage(null);
+        setPdf(null);
+        setLoading(false);
+   
       } catch (error) {
         console.error('Error uploading files:', error);
         setMessage(error.message || 'Error uploading files. Please try again.');
@@ -158,19 +162,9 @@ const Postjob = ({ accessToken }) => {
                   />
                   {coverImage && <img src={URL.createObjectURL(coverImage)} alt="Preview" className="mt-2 w-24 h-24 object-cover" />}
                 </div>
-                <div className="flex flex-col mb-4 ">
-                  <label htmlFor="status" className="font-medium">Status</label>
-                  <select 
-                    id="status" 
-                    name="status"
-                    value={formData.status}
-                    onChange={handleInputChange}
-                    className="border outline-none px-3 py-1 rounded-md md:w-full"
-                  >
-                    <option value="Draft">Draft</option>
-                    <option value="active">Active</option>
-                  </select>
-                </div>
+               
+
+                
               </div>
             </div>
             <div className="flex flex-col mb-4">
@@ -222,7 +216,7 @@ const Postjob = ({ accessToken }) => {
               >
                 {loading ? 'Publishing...' : 'Publish Article'}
               </button>
-              <Link href="/dashboard" className="flex items-center gap-2">
+              <Link href="/admin/posts" className="flex items-center gap-2">
                 <span className="text-[#A70E28] font-medium">Go Back</span>
                 <MdOutlineArrowOutward />
               </Link>

@@ -1,7 +1,10 @@
+'use client'; // Ensure this component runs on the client side
+
 import ArticleDetailcard from "@/app/componets/detailArticle";
 import Navs from "@/app/componets/nav";
 import React from "react";
 import { GoDownload } from "react-icons/go";
+import DOMPurify from "dompurify"; // Import DOMPurify
 
 const Page = async ({ params }) => {
   const { id } = params;
@@ -37,7 +40,6 @@ const Page = async ({ params }) => {
     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) // Sort latest first
     .slice(0, 5); // Get the first 5 articles
 
-
   return (
     <div>
       {/* Navbar */}
@@ -68,9 +70,14 @@ const Page = async ({ params }) => {
 
           <p className="mt-9 pl-5 text-2xl font-semibold">{article.title}</p>
 
-          <article className="mt-4 text-justify max-w-[660px] mx-auto">
-            {article.description} {/* Display the article description dynamically */}
-          </article>
+          {article.description && ( // Conditional rendering
+            <article
+              className="mt-4 text-justify max-w-[660px] mx-auto"
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(article.description), // Sanitize the description
+              }}
+            />
+          )}
 
           <button className="flex items-center border gap-6 backdrop-blur-sm w-fit rounded-xl py-[6px] px-[15px] transition-colors duration-300 mt-[20px] bg-white">
             Download Article <GoDownload className="text-[20px]" />
