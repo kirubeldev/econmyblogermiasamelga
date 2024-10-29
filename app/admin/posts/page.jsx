@@ -10,6 +10,8 @@ import AdminAtricle1Card from '@/app/componets/AdminArticle';
 import Link from 'next/link';
 import { MdOutlineArrowOutward } from 'react-icons/md';
 import SkeletonArticle from '@/app/componets/skelton';
+import axios from 'axios';
+import getToken from '@/app/lib/tocken';
 
 const getDaySuffix = (day) => {
   if (day > 3 && day < 21) return 'th'; // Special case for teens
@@ -41,7 +43,7 @@ const Page = () => {
     // Fetch the blog details when the component mounts
     const fetchBlogDetail = async () => {
       try {
-        const res = await fetch(`http://localhost:3002/api/blog/`);
+        const res = await fetch(` http://localhost:3002/api/blog/`);
         const data = await res.json();
         setResponse(data);
       } catch (error) {
@@ -51,6 +53,9 @@ const Page = () => {
 
     fetchBlogDetail();
   }, []); // Empty dependency array to fetch only once on mount
+
+
+ 
 
   // Sort and filter articles
   const filteredArticles = response
@@ -77,6 +82,7 @@ const Page = () => {
     const words = description.split(' ');
     return words.length > 50 ? words.slice(0, 50).join(' ') + '...' : description;
   };
+
 
   return (
     <div className='mx-auto'>
@@ -161,7 +167,7 @@ const Page = () => {
               </div>
             </div>
           )}
-          <Subscribe />
+          {/* <Subscribe /> */}
         </div>
       </div>
     </div>
