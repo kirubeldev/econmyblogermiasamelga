@@ -89,7 +89,7 @@ const ExploreArticles = () => {
       <div className="max-w-6xl flex-col md:flex-row px-5 md:px-0 mt-[30px] mx-auto flex gap-4 md:gap-12 md:items-center">
         <p className="text-[24px] mr-4">Topics</p>
         <ul className="flex px-5 md:px-0 flex-wrap gap-4 md:gap-12 list-none">
-          {["all", "Business & Innovation", "Economy", "Entrepreneur", "Health"].map((topic) => (
+          {["all", "Business", "Economy", "Mindset", "Health and Wellbeing"].map((topic) => (
             <li key={topic}>
               <button
                 onClick={() => handleButtonClick(topic)}

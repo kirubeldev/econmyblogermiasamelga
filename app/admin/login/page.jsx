@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { CiMail } from "react-icons/ci";
 import { IoLockClosed } from "react-icons/io5";
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 const Page = () => {
   const [Email, setEmail] = useState("");
@@ -102,10 +103,17 @@ const Page = () => {
             {loading ? "Logging in..." : "Login"}
           </button>
 
+
+<div className='flex content-end mt-12 underline items-end'>
+  <Link href={"/admin/login/forgotpassword"}> 
+<p className='text-[13px] text-blue-500 '> 
+  forgot Password?
+</p>
+  </Link>
+</div>
           {/* Error Message */}
           {error && <p className="mt-2 text-red-500">{error}</p>}
 
-          <p className="mt-2 text-center">Forgot password?</p>
         </form>
       </div>
     </div>

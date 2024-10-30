@@ -128,10 +128,10 @@ router.push("/admin/posts")
                     onChange={(e) => setCategory(e.target.value)}
                     className="border outline-none px-3 py-1 rounded-md w-full md:w-[545px]"
                   >
-                    <option value="Business & Innovation">Business & Innovation</option>
+                    <option value="Business ">Business </option>
                     <option value="Economy">Economy</option>
-                    <option value="Entrepreneur">Entrepreneur</option>
-                    <option value="Health">Health</option>
+                    <option value="Mindset">Mindset</option>
+                    <option value="Health and Wellbeing">Health and Wellbeing</option>
                   </select>
                 </div>
               </div>

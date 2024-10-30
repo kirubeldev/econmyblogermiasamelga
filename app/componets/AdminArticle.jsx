@@ -70,7 +70,7 @@ const AdminArticle1Card = ({ id, date, type, title, desc, img , params }) => {
                     <img
                         src={img}
                         alt={title}
-                        className="object-cover h-[330px] md:h-[200px] w-[300px] rounded-lg"
+                        className="object-cover h-[330px] md:h-[200px] min-w-[300px] rounded-lg"
                     />
                 </Link>
                 <div>

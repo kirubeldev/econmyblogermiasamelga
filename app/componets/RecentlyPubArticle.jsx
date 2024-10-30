@@ -85,11 +85,15 @@ const formatDate = (dateString) => {
 };
 
 // Helper function to sanitize and truncate the description without <p> tags
+// Helper function to sanitize and truncate the description without any HTML tags
 const truncateDescription = (description) => {
-  // Sanitize description and remove <p> tags
-  const sanitizedDescription = DOMPurify.sanitize(description).replace(/<\/?p>/g, '');
-  const words = sanitizedDescription.split(" ");
-  return words.length > 50 ? words.slice(0, 50).join(" ") + "..." : sanitizedDescription;
-};
+  // Sanitize the description to remove harmful scripts
+  const sanitizedDescription = DOMPurify.sanitize(description);
+  
+  // Use a regular expression to remove any remaining HTML tags
+  const strippedDescription = sanitizedDescription.replace(/<\/?[^>]+(>|$)/g, "");
 
+  const words = strippedDescription.split(" ");
+  return words.length > 50 ? words.slice(0, 50).join(" ") + "..." : strippedDescription;
+};
 export default RecentlyPubArticle;

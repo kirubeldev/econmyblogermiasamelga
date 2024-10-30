@@ -109,7 +109,7 @@ const Page = () => {
               <p className='text-[18px] font-semibold'>Topics</p>
             </div>
             <div className='pl-3 pt-1'>
-              {["Business & Innovation", "Economy", "Entrepreneur", "Health"].map(topic => (
+              {["Business ", "Economy", "Mindset", "Health and Wellbeing"].map(topic => (
                 <div className='flex items-center gap-3' key={topic}>
                   <input
                     type="checkbox"

@@ -102,11 +102,11 @@ const router = useRouter()
                       </li>
                       <hr />
                       <li>
-                        <Link href={"/articles"}>Entrepreneur</Link>
+                        <Link href={"/articles"}>Mindset</Link>
                       </li>
                       <hr />
                       <li>
-                        <Link href={"/articles"}>Health</Link>
+                        <Link href={"/articles"}>Health and Wellbeing</Link>
                       </li>
                     </ul>
                   )}
