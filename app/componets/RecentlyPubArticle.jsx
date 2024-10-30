@@ -94,6 +94,6 @@ const truncateDescription = (description) => {
   const strippedDescription = sanitizedDescription.replace(/<\/?[^>]+(>|$)/g, "");
 
   const words = strippedDescription.split(" ");
-  return words.length > 50 ? words.slice(0, 50).join(" ") + "..." : strippedDescription;
+  return words.length > 20 ? words.slice(0, 20).join(" ") + "..." : strippedDescription;
 };
 export default RecentlyPubArticle;
